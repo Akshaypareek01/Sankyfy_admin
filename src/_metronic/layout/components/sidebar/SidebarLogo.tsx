@@ -20,14 +20,15 @@ const SidebarLogo = () => {
     <div className='app-sidebar-logo px-6' id='kt_app_sidebar_logo' >
       <Link to='/dashboard'>
         {config.layoutType === 'dark-sidebar' ? (
-          <img
-            alt='Logo'
-            src={toAbsoluteUrl('/media/logos/Logo_2.png')}
-            className='h-55px app-sidebar-logo-default'
-          />
+          // <img
+          //   alt='Logo'
+          //   src={toAbsoluteUrl('/media/logos/Logo_2.jpeg')}
+          //   className='h-55px app-sidebar-logo-default'
+          // />
+          <span style={{fontSize:"24px",color:"#fff",letterSpacing:2}}>SANKYFY.com</span>
         ) : (
           <>
-            <img
+            {/* <img
               alt='Logo'
               src={toAbsoluteUrl('/media/logos/Logo_1.png')}
               className='h-55px app-sidebar-logo-default theme-light-show'
@@ -36,13 +37,13 @@ const SidebarLogo = () => {
               alt='Logo'
               src={toAbsoluteUrl('/media/logos/Logo_1.png')}
               className='h-55px app-sidebar-logo-default theme-dark-show'
-            />
+            /> */}
           </>
         )}
 
         <img
           alt='Logo'
-          src={toAbsoluteUrl('/media/logos/Logo_1.png')}
+          src={toAbsoluteUrl('/media/logos/Logo_2.jpeg')}
           className='h-20px app-sidebar-logo-minimize'
         />
       </Link>

@@ -23,7 +23,7 @@ const SidebarMenuMain = () => {
         fontIcon="bi-app-indicator"
       />
 
-      <SidebarMenuItem
+      {/* <SidebarMenuItem
         to="/team"
         icon={<PeopleIcon style={{ color: "orange", fontSize: "25px" }} />}
         title="Team"
@@ -69,7 +69,7 @@ const SidebarMenuMain = () => {
         fontIcon="bi-layers"
       />
 
-
+ */}
 
      
     </>
