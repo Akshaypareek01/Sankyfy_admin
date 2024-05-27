@@ -16,39 +16,44 @@ import { Base_url } from '../../Config/BaseUrl';
 import axios from 'axios';
 import UserContext from '../../../Context/UserContext';
 const column = [
+  { name: "Company Name" },
   { name: "Name" },
   { name: "Email" },
+  { name: "Mobile" },
+  { name: "GST Number" },
   // {name: "Phone Number"},
   {name: "Status"},
   { name: "Created At" },
   { name: "Action" },
   { name: "Delete" },
 ];
-export const Users = () => {
+export const Shops = () => {
     const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [rows,setrows] = useState([])
   // const [update,setupdate] = useState([])
   const {update,setUpdated} = useContext(UserContext);
   const handelViewClick=(id)=>{
-    navigate(`/user_view/${id}`);
+    navigate(`/shop_view/${id}`);
   }
 
   const handelAddUser=()=>{
-    navigate("/user_add/")
+    navigate("/shop_add/")
   }
  
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`${Base_url}api/user`);
+      const response = await axios.get(`${Base_url}api/shopkeepers`);
 
       if (response.status === 200) {
         const fetchedCategories = response.data.data;
         setCategories(fetchedCategories);
         const FormatedData = fetchedCategories.map((el,index)=>({
+          "Company Name":el.companyName,
           "Name":el.name,
           "Email":el.email,
-          // "PhoneNumber":el.mobile,
+          "PhoneNumber":el.mobile,
+          "GstNumber":el.gstinNumber,
           "status":el.status ? "Active" : "Inactive" ,
           "CreatedAt":el.createdAt,
           "Action":<EditIcon onClick={()=>handelViewClick(el._id)} style={{ color: `${ThemColor.icon}` }} />,
@@ -65,7 +70,7 @@ export const Users = () => {
 
   const deleteUser = async(ID) => {
     try{
-      const res = await axios.delete(`${Base_url}api/user/${ID}`);
+      const res = await axios.delete(`${Base_url}api/shopkeepers/${ID}`);
       console.log(res)
       setUpdated((prev)=>prev+1)
     }

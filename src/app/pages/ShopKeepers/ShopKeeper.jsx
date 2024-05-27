@@ -1,6 +1,6 @@
 
 import { Box, Button, Card, CardContent, CardHeader, Typography } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { ThemColor } from '../../Them/ThemColor'
 import TuneIcon from '@mui/icons-material/Tune';
 import TextField from '@mui/material/TextField';
@@ -14,40 +14,47 @@ import EditIcon from '@mui/icons-material/Edit';
 import { AddCircle } from '@mui/icons-material';
 import { Base_url } from '../../Config/BaseUrl';
 import axios from 'axios';
+import UserContext from '../../../Context/UserContext';
 const column = [
+  { name: "Company Name" },
   { name: "Name" },
   { name: "Email" },
-  {name: "Phone Number"},
-  {name: "Client Type"},
+  { name: "Mobile" },
+  { name: "GST Number" },
+  // {name: "Phone Number"},
+  {name: "Status"},
   { name: "Created At" },
   { name: "Action" },
   { name: "Delete" },
 ];
-export const Client = () => {
+export const ShopKeeper = () => {
     const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
   const [rows,setrows] = useState([])
-  const [update,setupdate] = useState([])
+  // const [update,setupdate] = useState([])
+  const {update,setUpdated} = useContext(UserContext);
   const handelViewClick=(id)=>{
-    navigate(`/client_view/${id}`);
+    navigate(`/shopkeepers_view/${id}`);
   }
 
   const handelAddUser=()=>{
-    navigate("/client_add/")
+    navigate("/shopkeepers_add/")
   }
  
   const fetchUser = async () => {
     try {
-      const response = await axios.get(`${Base_url}api/client`);
+      const response = await axios.get(`${Base_url}api/shopkeepers`);
 
       if (response.status === 200) {
-        const fetchedCategories = response.data;
+        const fetchedCategories = response.data.data;
         setCategories(fetchedCategories);
         const FormatedData = fetchedCategories.map((el,index)=>({
+          "Company Name":el.companyName,
           "Name":el.name,
           "Email":el.email,
           "PhoneNumber":el.mobile,
-          "ClientType":el.type,
+          "GstNumber":el.gstinNumber,
+          "status":el.status ? "Active" : "Inactive" ,
           "CreatedAt":el.createdAt,
           "Action":<EditIcon onClick={()=>handelViewClick(el._id)} style={{ color: `${ThemColor.icon}` }} />,
           "Delete":<DeleteIcon color="error" onClick={()=>deleteUser(el._id)} />
@@ -63,9 +70,9 @@ export const Client = () => {
 
   const deleteUser = async(ID) => {
     try{
-      const res = await axios.delete(`${Base_url}api/client/${ID}`);
+      const res = await axios.delete(`${Base_url}api/shopkeepers/${ID}`);
       console.log(res)
-      setupdate((prev)=>prev+1)
+      setUpdated((prev)=>prev+1)
     }
     catch(err){
       console.log("Error",err)
@@ -87,11 +94,11 @@ export const Client = () => {
             </Box> */}
 
             <Box style={{width:"30%",hieght:"50px"}}>
-            <Autocomplete
+            {/* <Autocomplete
         freeSolo
         id="free-solo-2-demo"
         disableClearable
-        options={rows.map((option) => option.Category)}
+        options={rows.map((option) => option.name)}
         renderInput={(params) => (
           <TextField
             {...params}
@@ -102,7 +109,7 @@ export const Client = () => {
             }}
           />
         )}
-      />
+      /> */}
             </Box>
 
             <Box>

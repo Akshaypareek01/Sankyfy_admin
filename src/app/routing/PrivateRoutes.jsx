@@ -8,30 +8,24 @@ import {getCSSVariableValue} from '../../_metronic/assets/ts/_utils'
 
 import UserContext from '../../Context/UserContext'
 
-import {  Client } from '../pages/ManageB2BUsers/Client'
-
-import {  ClientAdd } from '../pages/ManageB2BUsers/ClientAdd'
-import { Team } from '../pages/Vendors/Team'
-import { Rates } from '../pages/Rates/Rates'
-import { Orders } from '../pages/Orders/Orders'
 import {  Inventory } from '../pages/Categories/Inventory'
 
-
 import { Accounts } from '../pages/Accounts/Accounts'
-import { Users } from '../pages/Users/Users'
-import {  ViewInventory } from '../pages/Categories/ViewInventory'
 
-import { AddTeam } from '../pages/Vendors/AddTeam'
-import { TeamView } from '../pages/Vendors/TeamView'
-import { B2BOrders } from '../pages/Orders/B2BOrders'
-import { AddB2BOrder } from '../pages/Orders/AddB2BOrder'
-import { AddUsers } from '../pages/Users/AddUsers'
-import { AddOrder } from '../pages/Orders/AddOrders'
 
-import { ClientView } from '../pages/ManageB2BUsers/ClientView'
+
 import { CreateInvoice } from '../pages/Accounts/CreateInvoiceAcc'
 import { Invoices } from '../pages/Accounts/Invoices'
 import { AllInvoices } from '../pages/Accounts/AllInvoices'
+import { UsersAdd } from '../pages/Users/UsersAdd'
+import { UserView } from '../pages/Users/UserView'
+import { Users } from '../pages/Users/Users'
+import { ShopKeeper } from '../pages/ShopKeepers/ShopKeeper'
+import { ShopKeeperAdd } from '../pages/ShopKeepers/ShopKeeperAdd'
+import { ShopKeeperView } from '../pages/ShopKeepers/ShopKeeperView'
+import { Shops } from '../pages/Shops/Shops'
+import { ShopAdd } from '../pages/Shops/ShopAdd'
+import { ShopsView } from '../pages/Shops/ShopsView'
 
 
 
@@ -55,102 +49,14 @@ const PrivateRoutes = () => {
         <Route path='dashboard' element={<DashboardWrapper />} />
       
         <Route path='menu-test' element={<MenuTestPage />} />
-     
-       
-        <Route
-          path='team/*'
-          element={
-            <SuspensedView>
-              <Team />
-            </SuspensedView>
-          }
-        />
 
-<Route
-          path='team/add/*'
-          element={
-            <SuspensedView>
-              <AddTeam />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='team/view/:id'
-          element={
-            <SuspensedView>
-              <TeamView />
-            </SuspensedView>
-          }
-        />
 
-{/* <Route
-          path='rates/*'
-          element={
-            <SuspensedView>
-              <Rates />
-            </SuspensedView>
-          }
-        /> */}
 
-<Route
-          path='orders/*'
-          element={
-            <SuspensedView>
-              <Orders />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='orders/add/*'
-          element={
-            <SuspensedView>
-              <AddOrder />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='jobs/*'
-          element={
-            <SuspensedView>
-              <B2BOrders />
-            </SuspensedView>
-          }
-        />
-        <Route
-          path='jobs/add/*'
-          element={
-            <SuspensedView>
-              <AddB2BOrder />
-            </SuspensedView>
-          }
-        />
 
-<Route
-          path='inventory/*'
-          element={
-            <SuspensedView>
-              <Inventory />
-            </SuspensedView>
-          }
-        />
 
-<Route
-          path='inventory/view-categorie/:id'
-          element={
-            <SuspensedView>
-              <ViewInventory />
-            </SuspensedView>
-          }
-        />
 
-{/* <Route
-          path='sales/*'
-          element={
-            <SuspensedView>
-              <Sales />
-            </SuspensedView>
-          }
-        /> */}
+
+
         <Route
           path='accounts/create-invoice/*'
           element={
@@ -177,33 +83,7 @@ const PrivateRoutes = () => {
           }
         />
      
-     
-      
-        {/* <Route
-          path='sales/sales-view/*'
-          element={
-            <SuspensedView>
-              <SalesView />
-            </SuspensedView>
-          }
-          /> */}
-          {/* <Route
-          path='sales/sales-view/view/:id'
-          element={
-            <SuspensedView>
-              <Invoices />
-            </SuspensedView>
-          }
-          /> */}
-{/* 
-<Route
-          path='plans/*'
-          element={
-            <SuspensedView>
-              <Plans />
-            </SuspensedView>
-          }
-        /> */}
+
 
 <Route
           path='accounts/*'
@@ -214,7 +94,10 @@ const PrivateRoutes = () => {
           }
         />
 
-{/* <Route
+
+  
+
+<Route
           path='users/*'
           element={
             <SuspensedView>
@@ -222,39 +105,72 @@ const PrivateRoutes = () => {
             </SuspensedView>
           }
         />
-
-<Route
-          path='users/users_add/*'
-          element={
-            <SuspensedView>
-              <AddUsers />
-            </SuspensedView>
-          }
-        /> */}
-  
-
-<Route
-          path='client/*'
-          element={
-            <SuspensedView>
-              <Client />
-            </SuspensedView>
-          }
-        />
         <Route
-          path='client_add/*'
+          path='user_add/*'
           element={
             <SuspensedView>
-              <ClientAdd />
+              <UsersAdd />
             </SuspensedView>
           }
         />
 
      <Route
-          path='client_view/:id/*'
+          path='user_view/:id/*'
           element={
             <SuspensedView>
-              <ClientView />
+              <UserView />
+            </SuspensedView>
+          }
+        />
+
+<Route
+          path='shopkeepers/*'
+          element={
+            <SuspensedView>
+              <ShopKeeper />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='shopkeepers_add/*'
+          element={
+            <SuspensedView>
+              <ShopKeeperAdd />
+            </SuspensedView>
+          }
+        />
+
+     <Route
+          path='shopkeepers_view/:id/*'
+          element={
+            <SuspensedView>
+              <ShopKeeperView />
+            </SuspensedView>
+          }
+        />
+
+<Route
+          path='shops/*'
+          element={
+            <SuspensedView>
+              <Shops />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='shop_add/*'
+          element={
+            <SuspensedView>
+              <ShopAdd />
+            </SuspensedView>
+          }
+        />
+
+     <Route
+          path='shop_view/:id/*'
+          element={
+            <SuspensedView>
+              <ShopsView />
             </SuspensedView>
           }
         />
