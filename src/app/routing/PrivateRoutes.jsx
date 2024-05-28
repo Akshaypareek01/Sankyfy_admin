@@ -26,6 +26,7 @@ import { ShopKeeperView } from '../pages/ShopKeepers/ShopKeeperView'
 import { Shops } from '../pages/Shops/Shops'
 import { ShopAdd } from '../pages/Shops/ShopAdd'
 import { ShopsView } from '../pages/Shops/ShopsView'
+import { AllShops } from '../pages/AllShops/AllShops'
 
 
 
@@ -154,6 +155,14 @@ const PrivateRoutes = () => {
           element={
             <SuspensedView>
               <Shops />
+            </SuspensedView>
+          }
+        />
+        <Route
+          path='all_shops/*'
+          element={
+            <SuspensedView>
+              <AllShops />
             </SuspensedView>
           }
         />

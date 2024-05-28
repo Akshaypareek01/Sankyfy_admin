@@ -11,6 +11,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import WorkIcon from '@mui/icons-material/Work';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import ShoppingBasketIcon from '@mui/icons-material/ShoppingBasket';
+import MapIcon from '@mui/icons-material/Map';
 const SidebarMenuMain = () => {
   // const {userPermisson}=useContext(UserContext);
   const userPermisson = JSON.parse(sessionStorage.getItem("userPermisson"));
@@ -50,6 +51,15 @@ const SidebarMenuMain = () => {
           <ShoppingBasketIcon style={{ color: "orange", fontSize: "25px" }} />
         }
         title="Shops"
+        fontIcon="bi-layers"
+      />
+
+<SidebarMenuItem
+        to="/all_shops"
+        icon={
+          <MapIcon style={{ color: "orange", fontSize: "25px" }} />
+        }
+        title="Map"
         fontIcon="bi-layers"
       />
 

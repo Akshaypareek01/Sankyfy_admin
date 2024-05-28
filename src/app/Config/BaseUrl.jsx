@@ -4,5 +4,5 @@ export const BASE_URL="https://chargesol-backend.onrender.com/api"
 
 // export const Base_url = "http://localhost:5000/"
 export const Base_url = "https://sankyfy-backend.onrender.com/"
-// export const Base_url2 ="https://duos-backend.onrender.com/"
+// export const Base_url ="https://duos-backend.onrender.com/"
 // export const Base_url = "https://sow-backend-dpjh.onrender.com/"

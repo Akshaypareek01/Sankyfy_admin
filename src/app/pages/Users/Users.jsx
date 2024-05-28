@@ -37,6 +37,15 @@ export const Users = () => {
   const handelAddUser=()=>{
     navigate("/user_add/")
   }
+  const updateShopStatus = async (shopId, status) => {
+    try {
+      const response = await axios.post(`${Base_url}api/user/update-status`, { shopId, status });
+      console.log('Shop status updated:', response.data);
+      setUpdated((prev)=>prev+1)
+    } catch (error) {
+      console.error('Error updating shop status:', error);
+    }
+  };
  
   const fetchUser = async () => {
     try {
@@ -49,9 +58,10 @@ export const Users = () => {
           "Name":el.name,
           "Email":el.email,
           // "PhoneNumber":el.mobile,
-          "status":el.status ? "Active" : "Inactive" ,
+          "status":el.status ? <Button variant='outlined' color='success' >Active</Button> : <Button variant='outlined' color='error' >In Active</Button> ,
           "CreatedAt":el.createdAt,
-          "Action":<EditIcon onClick={()=>handelViewClick(el._id)} style={{ color: `${ThemColor.icon}` }} />,
+          "Action":el.status ? <Button variant='contained' color='error' onClick={()=>{updateShopStatus(el._id,false)}}>InActive</Button> : <Button onClick={()=>{updateShopStatus(el._id,true)}} variant='contained' color='success' >Active</Button>,
+          "Edit":<EditIcon onClick={()=>handelViewClick(el._id)} style={{ color: `${ThemColor.icon}` }} />,
           "Delete":<DeleteIcon color="error" onClick={()=>deleteUser(el._id)} />
         }))
         setrows(FormatedData)
