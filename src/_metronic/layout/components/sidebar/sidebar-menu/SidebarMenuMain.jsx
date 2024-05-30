@@ -67,14 +67,14 @@ const SidebarMenuMain = () => {
 
   
 
-      <SidebarMenuItem
+      {/* <SidebarMenuItem
         to="/accounts"
         icon={
           <ManageAccountsIcon style={{ color: "orange", fontSize: "25px" }} />
         }
         title="Accounts"
         fontIcon="bi-layers"
-      />
+      /> */}
 
 
 
