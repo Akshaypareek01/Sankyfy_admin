@@ -134,6 +134,7 @@ export const ShopAdd = () => {
   const [GetCertificateImage,setGetCertificateImage] = useState(null);
   const [GstPanImage,setGstPanImage] = useState(null);
   const [shopKeepeersData,setShopKeepersData] = useState([])
+  const [CategoriesData, setCategoriesData] = useState([]);
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -331,6 +332,17 @@ export const ShopAdd = () => {
     }
   };
 
+  const getCategories = async () => {
+    try {
+      const response = await axios.get(`${Base_url}api/category`);
+      setCategoriesData(response.data);
+      console.log("Categories all", response.data)
+      return response.data;
+    } catch (error) {
+      throw error.response.data;
+    }
+  };
+
   const setAddressVisibel = ()=>{
     setAddressData(true)
   }
@@ -344,7 +356,8 @@ export const ShopAdd = () => {
   }
 
   useEffect(() => {
-    fetchShopOwners()
+    fetchShopOwners();
+    getCategories();
   }, []);
 
 
@@ -421,6 +434,26 @@ export const ShopAdd = () => {
         </FormControl>
                 </Box>
 
+                
+                <Box sx={{ marginTop: "20px" }}>
+<FormControl fullWidth>
+        <InputLabel id="demo-simple-select-label">Select Shop Category</InputLabel>
+        <Select
+          fullWidth
+          label="From"
+          name="shopCategory"
+          value={formData.shopCategory}
+                onChange={handleChange}
+        >
+          {CategoriesData.map((el) => (
+            <MenuItem key={el._id} value={el.name}>
+              {el.name} 
+            </MenuItem>
+          ))}
+        </Select>
+        </FormControl>
+                </Box>
+
                  <Box sx={{ marginTop: "20px" }}>
                   <TextField
                     id="inputBox"
@@ -466,7 +499,7 @@ export const ShopAdd = () => {
                     onChange={handleChange} 
                   />
                 </Box>
-                <Box sx={{ marginTop: "20px" }}>
+                {/* <Box sx={{ marginTop: "20px" }}>
                   <TextField
                  
                     sx={{ width: "100%" }}
@@ -476,7 +509,8 @@ export const ShopAdd = () => {
                 value={formData.shopCategory}
                 onChange={handleChange}
                   />
-                </Box>
+                </Box> */}
+
 
                 <Box sx={{ marginTop: "20px" }}>
                 <TextField

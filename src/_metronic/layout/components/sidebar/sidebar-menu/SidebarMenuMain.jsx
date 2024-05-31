@@ -55,6 +55,13 @@ const SidebarMenuMain = () => {
       />
 
 <SidebarMenuItem
+        to="/categories"
+        icon={<CategoryIcon style={{ color: "orange", fontSize: "25px" }} />}
+        title="Categories"
+        fontIcon="bi-layers"
+      />
+
+<SidebarMenuItem
         to="/all_shops"
         icon={
           <MapIcon style={{ color: "orange", fontSize: "25px" }} />
