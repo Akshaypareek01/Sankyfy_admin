@@ -15,6 +15,8 @@ import { AddCircle } from '@mui/icons-material';
 import { Base_url } from '../../Config/BaseUrl';
 import axios from 'axios';
 import UserContext from '../../../Context/UserContext';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 const column = [
   { name: "Name" },
   { name: "Email" },
@@ -22,6 +24,7 @@ const column = [
   {name: "Status"},
   { name: "Created At" },
   { name: "Action" },
+  {name:"Edit"},
   { name: "Delete" },
 ];
 export const Users = () => {
@@ -84,6 +87,32 @@ export const Users = () => {
     }
   }
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.text('User Data', 14, 16);
+    const tableColumn = ["Name", "Email", "Status", "CreatedAt"];
+    const tableRows = [];
+
+    categories.forEach(category => {
+      const categoryData = [
+        category.name,
+        category.email,
+        category.status ? 'Active' : 'In Active',
+        new Date(category.createdAt).toLocaleString()
+      ];
+      tableRows.push(categoryData);
+    });
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+    });
+
+    doc.save('user_data.pdf');
+  };
+
 
   useEffect(()=>{
     fetchUser()
@@ -118,6 +147,9 @@ export const Users = () => {
             </Box>
 
             <Box>
+            <Button variant="contained" style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}}  onClick={downloadPDF}>
+        Download PDF
+      </Button>
               <Button variant='contained' startIcon={<AddCircle />} onClick={handelAddUser} style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}}>Create new</Button>
               <Button variant='contained' style={{backgroundColor:`${ThemColor.buttons}`}}>
                 <TuneIcon />

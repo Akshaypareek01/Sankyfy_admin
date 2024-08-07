@@ -16,7 +16,8 @@ import { Base_url } from '../../Config/BaseUrl';
 import axios from 'axios';
 import UserContext from '../../../Context/UserContext';
 import CloseIcon from '@mui/icons-material/Close';
-
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 const column = [
   { name: "Shop Owner" },
   { name: "Shop" },
@@ -169,6 +170,49 @@ export const Shops = () => {
     });
   };
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.text('Shops Data', 14, 16);
+    const tableColumn = [
+      "Shop Keeper",
+      "Shop Name",
+      "Shop Category",
+      "Email",
+      "PhoneNumber",
+      "AltMobile",
+      "City",
+      "State",
+      "Status",
+      "CreatedAt"
+    ];
+    const tableRows = [];
+
+    categories.forEach(category => {
+      const categoryData = [
+        category.shopkeeperId.name,
+        category.shopName,
+        category.shopCategory,
+        category.emailId,
+        category.mobileNumber,
+        category.alternativeNumber,
+        category.city,
+        category.state,
+        category.status ? 'Active' : 'In Active',
+        new Date(category.createdAt).toLocaleString()
+      ];
+      tableRows.push(categoryData);
+    });
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+    });
+
+    doc.save('shops_data.pdf');
+  };
+
   useEffect(() => {
     if (open) {
       const script = document.createElement('script');
@@ -217,6 +261,9 @@ export const Shops = () => {
             </Box>
 
             <Box>
+            <Button variant="contained" style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}} onClick={downloadPDF}>
+        Download PDF
+      </Button>
               <Button variant='contained' startIcon={<AddCircle />} onClick={handelAddUser} style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}}>Create new</Button>
               <Button variant='contained' style={{backgroundColor:`${ThemColor.buttons}`}}>
                 <TuneIcon />

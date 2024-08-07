@@ -60,9 +60,9 @@ const AuthLayout = () => {
         {/* begin::Content */}
         <div className='d-flex flex-column flex-center py-15 px-5 px-md-15 w-100'>
           {/* begin::Logo */}
-          <Link to='/' className='mb-12'>
+          {/* <Link to='/' className='mb-12'>
             <img alt='Logo' src={toAbsoluteUrl('/media/logos/Logo_1.png')} className='h-95px' />
-          </Link>
+          </Link> */}
           {/* end::Logo */}
 
           {/* begin::Image */}
@@ -75,7 +75,7 @@ const AuthLayout = () => {
 
           {/* begin::Title */}
           <h1 className='text-white fs-2qx fw-bolder text-center mb-7 '>
-            The WorkFlow Solutions
+            Sankyfy.com
           </h1>
           {/* end::Title */}
 

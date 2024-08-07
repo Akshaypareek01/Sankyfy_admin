@@ -15,6 +15,8 @@ import { AddCircle } from '@mui/icons-material';
 import { Base_url } from '../../Config/BaseUrl';
 import axios from 'axios';
 import UserContext from '../../../Context/UserContext';
+import { jsPDF } from 'jspdf';
+import 'jspdf-autotable';
 const column = [
   { name: "Company Name" },
   { name: "Name" },
@@ -90,6 +92,34 @@ export const ShopKeeper = () => {
     }
   }
 
+  const downloadPDF = () => {
+    const doc = new jsPDF();
+
+    doc.text('Shopkeepers Data', 14, 16);
+    const tableColumn = ["Company Name", "Name", "Email", "PhoneNumber", "GstNumber", "Status", "CreatedAt"];
+    const tableRows = [];
+
+    categories.forEach(category => {
+      const categoryData = [
+        category.companyName,
+        category.name,
+        category.email,
+        category.mobile,
+        category.gstinNumber,
+        category.status ? 'Active' : 'In Active',
+        new Date(category.createdAt).toLocaleString()
+      ];
+      tableRows.push(categoryData);
+    });
+
+    doc.autoTable({
+      head: [tableColumn],
+      body: tableRows,
+      startY: 20,
+    });
+
+    doc.save('shopkeepers_data.pdf');
+  };
 
   useEffect(()=>{
     fetchUser()
@@ -124,6 +154,9 @@ export const ShopKeeper = () => {
             </Box>
 
             <Box>
+            <Button variant="contained" style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}} onClick={downloadPDF}>
+        Download PDF
+      </Button>
               <Button variant='contained' startIcon={<AddCircle />} onClick={handelAddUser} style={{backgroundColor:`${ThemColor.buttons}`,marginRight:"15px"}}>Create new</Button>
               <Button variant='contained' style={{backgroundColor:`${ThemColor.buttons}`}}>
                 <TuneIcon />
